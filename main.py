@@ -83,8 +83,9 @@ def query(query: str):
 def bento(query: str):
     response = query_pipeline(query)
     results_df_query = eval(response.metadata["pandas_instruction_str"])
-
-    if query.replace("จังหวัด", "").replace("เมือง", "") == "พัทยา":
+    if query.replace("ทั้งหมดเท่าไหร่", "").replace("งบประมาณ", "").replace("งบ", "").replace("จังหวัด", "").replace(
+        "เมือง", ""
+    ) in ["พัทยา", "กรุงเทพ", "กรุงเทพมหานคร", "กทม", "เมืองพัทยา", "พัทยา"]:
         results_df_query = df[df["BUDGETARY_UNIT"].str.contains("พัทยา")]
 
     # results_df_query = results_df_query[results_df_query["BUDGETARY_UNIT"].str.contains(query.replace("จังหวัด", ""))]
