@@ -1,0 +1,6 @@
+llama-index
+llama-index-experimental
+fastapi
+fastapi[standard]
+python-dotenv
+pandas
