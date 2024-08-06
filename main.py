@@ -99,9 +99,18 @@ def bento(query: str):
         # return str(results_df_query)
 
     return {
-        "categories": [(k, v) for k, v in results_df_query.groupby("CATEGORY_LV1")["AMOUNT"].sum().to_dict().items()],
-        "strategies": [(k, v) for k, v in results_df_query.groupby("STRATEGY")["AMOUNT"].count().to_dict().items()],
-        "ministry": [(k, v) for k, v in results_df_query.groupby("MINISTRY")["AMOUNT"].count().to_dict().items()],
+        "categories": [
+            {"title": k, "value": v}
+            for k, v in results_df_query.groupby("CATEGORY_LV1")["AMOUNT"].sum().to_dict().items()
+        ],
+        "strategies": [
+            {"title": k, "value": v}
+            for k, v in results_df_query.groupby("STRATEGY")["AMOUNT"].count().to_dict().items()
+        ],
+        "ministry": [
+            {"title": k, "value": v}
+            for k, v in results_df_query.groupby("MINISTRY")["AMOUNT"].count().to_dict().items()
+        ],
         "total": results_df_query["AMOUNT"].sum(),
         "total_projects": len(results_df_query),
     }
